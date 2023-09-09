@@ -1,0 +1,155 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+html, body {
+    @apply md:overflow-hidden;
+}
+
+body {
+    @apply bg-white min-h-screen font-sans text-lg text-black;
+
+    & > section {
+        @apply min-h-screen flex flex-col p-4 md:p-8;
+
+        & > header {
+            @apply relative md:h-24 flex flex-col md:flex-row items-center gap-4 border-x border-t md:border-r-0 border-black px-4 pt-8 md:pt-0;
+
+            img {
+                @apply w-32 md:w-16
+            }
+
+            h1 {
+                @apply flex flex-col items-start justify-center leading-4;
+
+                &::after {
+                    @apply content-[''] absolute bottom-[1.375rem] w-[calc(100%-6rem)] h-px hidden md:block bg-black -z-[1];
+                }
+                
+                a {
+                    @apply relative text-4xl font-thin
+                }
+
+                span {
+                    @apply relative w-full text-sm bg-black text-white overflow-hidden px-1;
+
+                    &::after {
+                        @apply content-[''] absolute bottom-1 w-full h-px bg-white/[.75] ml-1;
+                    }
+                }
+            }
+
+            ul {
+                @apply flex items-center justify-center gap-6 md:ml-auto;
+
+                li {
+
+                    a {
+                        @apply relative pl-1.5;
+
+                        &::before {
+                            @apply absolute content-[''] bottom-0 -left-1 w-2 h-px bg-black transition-all duration-300;
+                        }
+
+                        &:hover {
+                            @apply text-white transition-colors delay-300 duration-300;
+
+                            &::before {
+                                transition-delay: 0s, 300ms;
+                                transition-property: width, height;
+                                @apply w-[calc(100%+.5rem)] h-full -z-[1];
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        & > main {
+            @apply md:h-[calc(100vh-16rem)] flex flex-col md:flex-row md:gap-4 mt-4;
+
+            nav {
+                @apply md:w-20 flex-shrink-0 border-x border-t md:border-y md:border-l md:border-r-0 border-black flex flex-row md:flex-col md:py-8 md:pl-4;
+
+                a {
+                    @apply w-16 h-16 flex items-center justify-center;
+
+                    svg {
+                        @apply w-8 h-8 fill-black;
+                    }
+
+                    &:hover,
+                    &.active {
+                        @apply bg-black;
+
+                        svg {
+                            @apply fill-white;
+                        }
+                    }
+                }
+            }
+
+            section {
+                @apply w-full h-full hidden flex-col-reverse md:flex-row gap-4 md:gap-8 border-y border-black;
+
+                article {
+                    @apply w-full md:w-1/2 overflow-auto px-4 md:my-8;
+
+                    h1, h2, h3 {
+                        @apply font-bold uppercase mb-4;
+                    }
+
+                    p {
+                        @apply mb-4;
+                    }
+
+                    details {
+                        @apply lowercase mb-2;
+
+                        summary {
+                            @apply border border-black border-r-white cursor-pointer px-2;
+                        }
+
+                        &[open] {
+
+                            summary {
+                                @apply bg-black text-white
+                            }
+                        }
+                    }
+                }
+
+                figure {
+                    @apply relative w-full md:w-1/2 h-full min-h-[40vh] flex items-center justify-center bg-black mt-4 md:m-0;
+
+                    &::before,
+                    &::after {
+                        @apply content-[''] absolute inset-8 border border-white/[.675]
+                    }
+
+                    &::after {
+                        @apply inset-y-16 border-black
+                    }
+
+                    svg {
+                        @apply w-48 fill-white
+                    }
+                }
+
+                &.active {
+                    @apply flex;
+                }
+
+                &:last-child {
+                    @apply border-b-0 md:border-b
+                }
+            }
+        }
+
+        & > footer {
+            @apply relative h-16 flex items-center text-xs border-b border-x md:border-r-0 border-black px-4 mt-auto;
+        }
+    }
+}
